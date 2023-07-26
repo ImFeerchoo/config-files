@@ -21,6 +21,13 @@ spring:
           filters:
             - StripPrefix=2
             # - CustomFilterMitocode=MitocodeKey, MitocodeValue
-            - AddRequestHeader=MitocodeKey, MitocodeValue
-            - AddResponseHeader=MitocodeHeader, MitocodeHeaderValue
-            - AddRequestParameter=role, ROLE_USER
+            #- AddRequestHeader=MitocodeKey, MitocodeValue
+            #- AddResponseHeader=MitocodeHeader, MitocodeHeaderValue
+            #- AddRequestParameter=role, ROLE_USER
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/product-service/**
+          filters:
+            - StripPrefix=2
+            - AddResponseHeader=ProductHeader, ProductValue
